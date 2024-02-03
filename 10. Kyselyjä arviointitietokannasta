@@ -1,0 +1,32 @@
+1) 
+SELECT opiskelija.etunimi, opiskelija.Sukunimi, arviointi.Arvosana, opintojakso.Nimi
+FROM opiskelija
+JOIN arviointi ON opiskelija.idOpiskelija = arviointi.idOpiskelija
+JOIN opintojakso ON arviointi.idOpintojakso = opintojakso.idOpintojakso
+WHERE arviointi.Arvosana = 0;
+
+2)
+SELECT opiskelija.Etunimi, opiskelija.Sukunimi, arviointi.Arvosana
+FROM opiskelija
+JOIN arviointi ON opiskelija.idOpiskelija = arviointi.idOpiskelija
+JOIN opintojakso ON arviointi.idOpintojakso = opintojakso.idOpintojakso
+WHERE opintojakso.Nimi = 'Fysiikka 3' AND arviointi.Arvosana >= 1;
+
+3)
+SELECT opintojakso.Nimi
+FROM opiskelija
+JOIN arviointi ON opiskelija.idOpiskelija = arviointi.idOpiskelija
+JOIN opintojakso ON arviointi.idOpintojakso = opintojakso.idOpintojakso
+WHERE opiskelija.Etunimi = 'Hessu';
+
+4)
+SELECT AVG(arviointi.Arvosana) AS Keskiarvo
+FROM opiskelija
+JOIN arviointi ON opiskelija.idOpiskelija = arviointi.idOpiskelija
+WHERE opiskelija.Etunimi = 'Aku';
+
+5)
+SELECT opintojakso.Nimi
+FROM opintojakso
+LEFT JOIN arviointi ON opintojakso.idOpintojakso = arviointi.idOpintojakso
+WHERE arviointi.idOpintojakso IS NULL;
